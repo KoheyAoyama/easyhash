@@ -34,7 +34,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className="flex flex-col items-center justify-center p-8 m-auto max-w-3xl">
-        <div className="flex items-center w-full h-14 pl-6 p-2 mb-8 rounded-full bg-slate-100">
+        <div className="flex items-center w-full h-14 pl-6 p-2 mb-9 rounded-full bg-slate-100">
           <input
             className="grow h-full bg-transparent focus:outline-none"
             required
@@ -56,7 +56,7 @@ const Home: NextPage = () => {
           </button>
         </div>
 
-        <ul className="w-full mb-12">
+        <ul className="w-full mb-11">
           {hashtags.map(item => {
             return (
               <li
@@ -67,6 +67,7 @@ const Home: NextPage = () => {
                 <button
                   className="px-4 h-8 rounded-l-full bg-slate-600 text-white"
                   onClick={() => {
+                    if(selectedHashtags.includes(item)) return
                     const updatedHashtags: string[] = [...selectedHashtags, item]
                     setSelectedHashtags(updatedHashtags)
                   }}
@@ -87,10 +88,10 @@ const Home: NextPage = () => {
           })}
         </ul>
 
-        <ul className="flex w-full mb-4">
+        <ul className="flex flex-wrap gap-2 w-full mb-4">
           {selectedHashtags.map(item => {
             return (
-              <li key={item} className="flex gap-x-4 pl-5 p-2 mr-2 rounded-full bg-slate-300">
+              <li key={item} className="flex gap-x-4 pl-5 p-2 rounded-full bg-slate-300">
                 {item}
                 <button
                   className="px-2 h-7 rounded-full bg-slate-100 text-slate-400"
