@@ -10,6 +10,7 @@ const Home: NextPage = () => {
 
   const baseTweetURL: string = "https://twitter.com/intent/tweet"
   const fullTweetURL: string = baseTweetURL + '?text=' + tweetBody + '&hashtags=' + selectedHashtags.toString()
+  const reg = new RegExp(/[!"#$%&'()\*\+\-\.,\/:;<=>?@\[\\\]^_`{|}~ ]/g);
 
   useEffect(() => {
     const savedHashtagsData: string | null = window.localStorage.getItem('hashtags')
@@ -48,7 +49,7 @@ const Home: NextPage = () => {
             onClick={() => {
               if(inputText == '') return
               if(hashtags.includes(inputText)) return
-              const noWhiteSpaceInputText: string = inputText.replaceAll(" ","")
+              const noWhiteSpaceInputText: string = inputText.replaceAll(reg,"")
               const updatedHashtags: string[] = [...hashtags, noWhiteSpaceInputText]
               setHashtags(updatedHashtags)
             }}
