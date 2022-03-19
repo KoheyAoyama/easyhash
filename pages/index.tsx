@@ -23,7 +23,7 @@ const Home: NextPage = () => {
 
 
   return (
-    <div className="">
+    <div className="h-screen">
       <Head>
         <title>Easyhash</title>
         <meta name="description" content="Tweet with hashtag really easy!" />
@@ -33,8 +33,8 @@ const Home: NextPage = () => {
         <link rel="me" href="https://twitter.com/TwitterDev"></link>
       </Head>
 
-      <main className="flex flex-col items-center justify-center p-8">
-        <div className="flex items-center w-full h-16 pl-6 p-2 mb-8 rounded-full bg-slate-100">
+      <main className="flex flex-col items-center justify-center p-8 m-auto max-w-3xl">
+        <div className="flex items-center w-full h-14 pl-6 p-2 mb-8 rounded-full bg-slate-100">
           <input
             className="grow h-full bg-transparent focus:outline-none"
             required
