@@ -52,6 +52,7 @@ const Home: NextPage = () => {
               const noWhiteSpaceInputText: string = inputText.replaceAll(reg,"")
               const updatedHashtags: string[] = [...hashtags, noWhiteSpaceInputText]
               setHashtags(updatedHashtags)
+              setInputText('')
             }}
           >
             Add Hashtag
