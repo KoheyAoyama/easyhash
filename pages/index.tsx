@@ -1,7 +1,6 @@
 import type { NextPage } from 'next'
 import { useState, useEffect } from 'react'
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
   const [inputText, setInputText] = useState<string>('')
@@ -24,7 +23,7 @@ const Home: NextPage = () => {
 
 
   return (
-    <div className={styles.container}>
+    <div className="">
       <Head>
         <title>Easyhash</title>
         <meta name="description" content="Tweet with hashtag really easy!" />
@@ -34,34 +33,53 @@ const Home: NextPage = () => {
         <link rel="me" href="https://twitter.com/TwitterDev"></link>
       </Head>
 
-      <main className={styles.main}>
-        <div>
-          <input required type="text" value={inputText} onChange={e => setInputText(e.target.value)}></input>
+      <main className="flex flex-col items-center justify-center p-8">
+        <div className="flex items-center w-full h-16 pl-6 p-2 mb-8 rounded-full bg-slate-100">
+          <input
+            className="grow h-full bg-transparent focus:outline-none"
+            required
+            type="text"
+            value={inputText}
+            placeholder="よく使うハッシュタグを入力...（#は不要）"
+            onChange={e => setInputText(e.target.value)}>
+          </input>
           <button
+            className="px-6 h-full rounded-full bg-slate-600 text-white"
             onClick={() => {
               if(inputText == '') return
               if(hashtags.includes(inputText)) return
               const updatedHashtags: string[] = [...hashtags, inputText]
               setHashtags(updatedHashtags)
             }}
-          >Add</button>
+          >
+            Add Hashtag
+          </button>
         </div>
 
-        <ul>
+        <ul className="w-full mb-12">
           {hashtags.map(item => {
             return (
-              <li key={item}>
-                {item}
-                <button onClick={() => {
-                  const updatedHashtags: string[] = [...selectedHashtags, item]
-                  setSelectedHashtags(updatedHashtags)
-                }}>
+              <li
+                key={item}
+                className="flex items-center h-14 px-4 border-b border-slate-300"
+              >
+                <p className="grow">{item}</p>
+                <button
+                  className="px-4 h-8 rounded-l-full bg-slate-600 text-white"
+                  onClick={() => {
+                    const updatedHashtags: string[] = [...selectedHashtags, item]
+                    setSelectedHashtags(updatedHashtags)
+                  }}
+                >
                   Select
                 </button>
-                <button onClick={() => {
-                  const updatedHashtags: string[] = hashtags.filter(tag => tag != item)
-                  setHashtags(updatedHashtags)
-                }}>
+                <button
+                  className="px-4 h-8 rounded-r-full bg-red-500 text-white"
+                  onClick={() => {
+                    const updatedHashtags: string[] = hashtags.filter(tag => tag != item)
+                    setHashtags(updatedHashtags)
+                  }}
+                >
                   Delete
                 </button>
               </li>
@@ -69,22 +87,28 @@ const Home: NextPage = () => {
           })}
         </ul>
 
-        <ul>
+        <ul className="flex w-full mb-4">
           {selectedHashtags.map(item => {
             return (
-              <li key={item}>
+              <li key={item} className="flex gap-x-4 pl-5 p-2 mr-2 rounded-full bg-slate-300">
                 {item}
-                <button onClick={() => {
-                  const updatedHashtags: string[] = selectedHashtags.filter(tag => tag != item)
-                  setSelectedHashtags(updatedHashtags)
-                }}>
+                <button
+                  className="px-2 h-7 rounded-full bg-slate-100 text-slate-400"
+                  onClick={() => {
+                    const updatedHashtags: string[] = selectedHashtags.filter(tag => tag != item)
+                    setSelectedHashtags(updatedHashtags)
+                  }}
+                >
                   Remove
                 </button>
               </li>
             )
           })}
         </ul>
-        <a className={styles.tweetButton} target='_blank' href={fullTweetURL}>Tweet</a>
+        <a className="flex items-center justify-center h-14 w-full rounded-full bg-blue-500 font-semibold text-white"
+        target='_blank' href={fullTweetURL}>
+          <p>Tweet</p>
+        </a>
       </main>
     </div>
   )
