@@ -11,6 +11,18 @@ const Home: NextPage = () => {
   const baseTweetURL: string = "https://twitter.com/intent/tweet?hashtags="
   const fullTweetURL: string = baseTweetURL + selectedHashtags.toString()
 
+  useEffect(() => {
+    const savedHashtagsData = window.localStorage.getItem('hashtags')
+    if(savedHashtagsData == undefined) return
+    const savedHashtagsArray = savedHashtagsData.split(',')
+    setHashtags(savedHashtagsArray)
+  },[])
+
+  useEffect(() => {
+    window.localStorage.setItem('hashtags', hashtags.toString())
+  }, [hashtags])
+
+
   return (
     <div className={styles.container}>
       <Head>
