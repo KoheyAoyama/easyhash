@@ -121,7 +121,7 @@ const Home: NextPage = () => {
         </div>
 
         <a className="flex items-center justify-center h-14 w-full rounded-full bg-blue-500 font-semibold text-white"
-        target='_blank' href={fullTweetURL}>
+        target='_blank' rel="noreferrer" href={fullTweetURL}>
           <p>Tweet</p>
         </a>
       </main>
