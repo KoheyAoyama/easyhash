@@ -13,7 +13,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     const savedHashtagsData = window.localStorage.getItem('hashtags')
-    if(savedHashtagsData == undefined) return
+    if(savedHashtagsData == undefined || savedHashtagsData == '') return
     const savedHashtagsArray = savedHashtagsData.split(',')
     setHashtags(savedHashtagsArray)
   },[])
