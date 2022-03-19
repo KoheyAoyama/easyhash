@@ -4,11 +4,12 @@ import Head from 'next/head'
 
 const Home: NextPage = () => {
   const [inputText, setInputText] = useState<string>('')
+  const [tweetBody, setTweetBody] = useState<string>('')
   const [hashtags, setHashtags] = useState<string[]>([])
   const [selectedHashtags, setSelectedHashtags] = useState<string[]>([])
 
-  const baseTweetURL: string = "https://twitter.com/intent/tweet?hashtags="
-  const fullTweetURL: string = baseTweetURL + selectedHashtags.toString()
+  const baseTweetURL: string = "https://twitter.com/intent/tweet"
+  const fullTweetURL: string = baseTweetURL + '?text=' + tweetBody + '&hashtags=' + selectedHashtags.toString()
 
   useEffect(() => {
     const savedHashtagsData = window.localStorage.getItem('hashtags')
@@ -56,7 +57,7 @@ const Home: NextPage = () => {
           </button>
         </div>
 
-        <ul className="w-full mb-11">
+        <ul className="w-full mb-10">
           {hashtags.map(item => {
             return (
               <li
@@ -106,6 +107,16 @@ const Home: NextPage = () => {
             )
           })}
         </ul>
+
+        <div className="flex items-center w-full p-6 mb-6 rounded-2xl bg-slate-100">
+          <textarea
+            className="grow h-full bg-transparent focus:outline-none"
+            rows={4}
+            onChange={e => setTweetBody(e.target.value)}
+          >
+          </textarea>
+        </div>
+
         <a className="flex items-center justify-center h-14 w-full rounded-full bg-blue-500 font-semibold text-white"
         target='_blank' href={fullTweetURL}>
           <p>Tweet</p>
