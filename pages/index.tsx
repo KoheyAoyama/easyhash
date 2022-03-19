@@ -8,7 +8,8 @@ const Home: NextPage = () => {
   const [hashtags, setHashtags] = useState<string[]>([])
   const [selectedHashtags, setSelectedHashtags] = useState<string[]>([])
 
-  const baseTweetURL: string = "https://twitter.com/intent/tweet"
+  //const baseTweetURL: string = "https://twitter.com/intent/tweet"
+  const baseTweetURL: string = "https://twitter.com/share"
   const fullTweetURL: string = baseTweetURL + '?text=' + tweetBody + '&hashtags=' + selectedHashtags.toString()
   const reg = new RegExp(/[!"#$%&'()\*\+\-\.,\/:;<=>?@\[\\\]^_`{|}~ ]/g);
 
@@ -120,8 +121,12 @@ const Home: NextPage = () => {
           </textarea>
         </div>
 
-        <a className="flex items-center justify-center h-14 w-full rounded-full bg-blue-500 font-semibold text-white"
-        target='_blank' rel="noreferrer" href={fullTweetURL}>
+        <a
+          className="flex items-center justify-center h-14 w-full rounded-full bg-blue-500 font-semibold text-white"
+          target='_blank'
+          rel="noreferrer"
+          href={fullTweetURL}
+        >
           <p>Tweet</p>
         </a>
       </main>
