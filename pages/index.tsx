@@ -48,7 +48,7 @@ const Home: NextPage = () => {
             onClick={() => {
               if(inputText == '') return
               if(hashtags.includes(inputText)) return
-              const noWhiteSpaceInputText: string = inputText.replace(" ","")
+              const noWhiteSpaceInputText: string = inputText.replaceAll(" ","")
               const updatedHashtags: string[] = [...hashtags, noWhiteSpaceInputText]
               setHashtags(updatedHashtags)
             }}
@@ -112,6 +112,7 @@ const Home: NextPage = () => {
           <textarea
             className="grow h-full bg-transparent focus:outline-none"
             rows={4}
+            maxLength={140}
             onChange={e => setTweetBody(e.target.value)}
           >
           </textarea>
