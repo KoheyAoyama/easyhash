@@ -48,7 +48,8 @@ const Home: NextPage = () => {
             onClick={() => {
               if(inputText == '') return
               if(hashtags.includes(inputText)) return
-              const updatedHashtags: string[] = [...hashtags, inputText]
+              const noWhiteSpaceInputText: string = inputText.replace(" ","")
+              const updatedHashtags: string[] = [...hashtags, noWhiteSpaceInputText]
               setHashtags(updatedHashtags)
             }}
           >
