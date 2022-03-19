@@ -12,16 +12,15 @@ const Home: NextPage = () => {
   const fullTweetURL: string = baseTweetURL + '?text=' + tweetBody + '&hashtags=' + selectedHashtags.toString()
 
   useEffect(() => {
-    const savedHashtagsData = window.localStorage.getItem('hashtags')
+    const savedHashtagsData: string | null = window.localStorage.getItem('hashtags')
     if(savedHashtagsData == undefined || savedHashtagsData == '') return
-    const savedHashtagsArray = savedHashtagsData.split(',')
+    const savedHashtagsArray: string[] = savedHashtagsData.split(',')
     setHashtags(savedHashtagsArray)
   },[])
 
   useEffect(() => {
     window.localStorage.setItem('hashtags', hashtags.toString())
   }, [hashtags])
-
 
   return (
     <div className="h-screen">
