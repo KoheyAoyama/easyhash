@@ -8,7 +8,6 @@ const Home: NextPage = () => {
   const [hashtags, setHashtags] = useState<string[]>([])
   const [selectedHashtags, setSelectedHashtags] = useState<string[]>([])
 
-  //const baseTweetURL: string = "https://twitter.com/intent/tweet"
   const baseTweetURL: string = "https://twitter.com/share"
   const fullTweetURL: string = baseTweetURL + '?text=' + tweetBody + '&hashtags=' + selectedHashtags.toString()
   const reg = new RegExp(/[!"#$%&'()\*\+\-\.,\/:;<=>?@\[\\\]^_`{|}~ ]/g);
@@ -42,16 +41,16 @@ const Home: NextPage = () => {
             required
             type="text"
             value={inputText}
-            placeholder="よく使うハッシュタグを入力...（#は不要）"
+            placeholder="よく使うハッシュタグを入力..."
             onChange={e => setInputText(e.target.value)}>
           </input>
           <button
             className="px-6 h-full rounded-full bg-slate-600 text-white"
             onClick={() => {
-              if(inputText == '') return
-              if(hashtags.includes(inputText)) return
-              const noWhiteSpaceInputText: string = inputText.replaceAll(reg,"")
-              const updatedHashtags: string[] = [...hashtags, noWhiteSpaceInputText]
+              const alphanumericInputText: string = inputText.replaceAll(reg,"")
+              if(alphanumericInputText == '') return
+              if(hashtags.includes(alphanumericInputText)) return
+              const updatedHashtags: string[] = [...hashtags, alphanumericInputText]
               setHashtags(updatedHashtags)
               setInputText('')
             }}
