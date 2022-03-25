@@ -2,6 +2,9 @@ import type { NextPage } from 'next'
 import { useState, useEffect } from 'react'
 import Head from 'next/head'
 
+import { Firebase } from './class/firebase'
+const firebase = new Firebase()
+
 const Home: NextPage = () => {
   const [inputText, setInputText] = useState<string>('')
   const [tweetBody, setTweetBody] = useState<string>('')
@@ -35,6 +38,14 @@ const Home: NextPage = () => {
       </Head>
 
       <main className="flex flex-col items-center justify-center p-8 m-auto max-w-3xl">
+        <button
+          className="px-6 h-full rounded-full bg-slate-600 text-white"
+          onClick={() => {
+            firebase.signIn()
+          }}
+        >
+          Sign up with Twitter
+        </button>
         <div className="flex items-center w-full h-14 pl-6 p-2 mb-9 rounded-full bg-slate-100">
           <input
             className="grow h-full bg-transparent focus:outline-none"
