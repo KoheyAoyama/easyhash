@@ -40,8 +40,9 @@ const Home: NextPage = () => {
       <main className="flex flex-col items-center justify-center p-8 m-auto max-w-3xl">
         <button
           className="px-6 h-full rounded-full bg-slate-600 text-white"
-          onClick={() => {
-            firebase.signIn()
+          onClick={ async () => {
+            const [user, token, secret] = await firebase.signUp()
+            console.log(`${user}, ${token}, ${secret}`)
           }}
         >
           Sign up with Twitter

@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app"
-import { getAuth, signInWithPopup, TwitterAuthProvider } from "firebase/auth"
+import { getAuth, signInWithPopup, TwitterAuthProvider, signOut, deleteUser } from "firebase/auth"
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -15,28 +15,54 @@ export class Firebase {
   app: any
   provider: TwitterAuthProvider
   auth: any
+  user: any
+  token: any
+  secret: any
 
   constructor() {
     this.app = initializeApp(firebaseConfig)
-    this.provider = new TwitterAuthProvider();
+    this.provider = new TwitterAuthProvider()
     this.auth = getAuth()
+    this.user = "asdf"
+    this.token = "fff"
+    this.secret = "xxx"
   }
 
-  public signIn() {
-    signInWithPopup(this.auth, this.provider)
+  public async signUp() {
+    await signInWithPopup(this.auth, this.provider)
     .then((result) => {
       // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
       // You can use these server side with your app's credentials to access the Twitter API.
-      const credential: any = TwitterAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      const secret = credential.secret;
-
+      const credential: any = TwitterAuthProvider.credentialFromResult(result)
+      this.token = credential.accessToken
+      this.secret = credential.secret
       // The signed-in user info.
-      const user = result.user;
+      this.user = result.user
     }).catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
+      const errorCode = error.code
+      const errorMessage = error.message
       console.log(errorMessage)
+    })
+    return [this.user, this.token, this.secret]
+  }
+
+  public signOut() {
+    signOut(this.auth)
+    .then(() => {
+      return
+    }).catch((error) => {
+      console.log(error)
+    })
+  }
+
+  public deleteUser() {
+    const currentUser = this.auth.currentUser
+    deleteUser(currentUser)
+    .then(() => {
+      // User deleted.
+      return
+    }).catch((error) => {
+      console.log(error)
     })
   }
 }
