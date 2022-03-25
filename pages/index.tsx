@@ -66,7 +66,7 @@ const Home: NextPage = () => {
                 key={item}
                 className="flex items-center h-14 px-4 border-b border-slate-300"
               >
-                <p className="grow">{item}</p>
+                <p className="grow">{`#${item}`}</p>
                 <button
                   className="px-4 h-8 rounded-l-full bg-slate-600 text-white"
                   onClick={() => {
@@ -95,7 +95,7 @@ const Home: NextPage = () => {
           {selectedHashtags.map(item => {
             return (
               <li key={item} className="flex gap-x-4 pl-5 p-2 rounded-full bg-slate-300">
-                {item}
+                {`#${item}`}
                 <button
                   className="px-2 h-7 rounded-full bg-slate-100 text-slate-400"
                   onClick={() => {
