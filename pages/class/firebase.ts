@@ -23,12 +23,12 @@ export class Firebase {
     this.app = initializeApp(firebaseConfig)
     this.provider = new TwitterAuthProvider()
     this.auth = getAuth()
-    this.user = "asdf"
-    this.token = "fff"
-    this.secret = "xxx"
+    this.user
+    this.token
+    this.secret
   }
 
-  public async signUp() {
+  public async signIn() {
     await signInWithPopup(this.auth, this.provider)
     .then((result) => {
       // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
@@ -41,7 +41,7 @@ export class Firebase {
     }).catch((error) => {
       const errorCode = error.code
       const errorMessage = error.message
-      console.log(errorMessage)
+      console.log(`Error!! Code: ${errorCode}, Message: ${errorMessage}`)
     })
     return [this.user, this.token, this.secret]
   }
@@ -51,7 +51,7 @@ export class Firebase {
     .then(() => {
       return
     }).catch((error) => {
-      console.log(error)
+      console.log(`Error!! ${error}`)
     })
   }
 
@@ -62,7 +62,7 @@ export class Firebase {
       // User deleted.
       return
     }).catch((error) => {
-      console.log(error)
+      console.log(`Error!! ${error}`)
     })
   }
 }

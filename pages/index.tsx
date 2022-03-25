@@ -41,7 +41,7 @@ const Home: NextPage = () => {
         <button
           className="px-6 h-full rounded-full bg-slate-600 text-white"
           onClick={ async () => {
-            const [user, token, secret] = await firebase.signUp()
+            const [user, token, secret] = await firebase.signIn()
             console.log(`${user}, ${token}, ${secret}`)
           }}
         >
